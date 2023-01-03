@@ -3,7 +3,6 @@ import Column from '../Column/Column'
 import styles from './List.module.scss'
 import shortid from 'shortid';
 import ColumnForm from '../ColumnForm/ColumnForm';
-import CardForm from '../CardForm/CardForm';
 
 const List = () => {
 
@@ -43,13 +42,29 @@ const List = () => {
 
   const addCard = (newCard, columnId) => {
     const columnsUpdated = columns.map(column => {
-      if (column.id === columnId)
-        return { ...column, cards: [...column.cards, { id: shortid(), title: newCard.title }] }
+      if (column.id === columnId) {
+        if (column.cards) {
+          return { ...column, cards: [...column.cards, { id: shortid(), title: newCard.title }] }
+        }
+        return { ...column, cards: [{ id: shortid(), title: newCard.title }] }
+      }
       else
         return column
     })
 
     setColumns(columnsUpdated);
+  }
+
+  const removeCard = (cardId, columnId) => {
+    const columnsUpdate = columns.map(column => {
+      if (column.id === columnId && column.cards.filter(card => card.id === cardId)) {
+        return { ...column, cards: column.cards.filter(card => card.id !== cardId) }
+      } else {
+        return column
+      }
+    })
+
+    setColumns(columnsUpdate);
   }
 
   return (
@@ -61,7 +76,7 @@ const List = () => {
         Interesting things I want to check out.
       </p>
       <section className={styles.columns}>
-        {columns.map(({ id, title, icon, cards }) => <Column action={addCard} columnId={id} key={id} title={title} icon={icon} cards={cards} />)}
+        {columns.map(({ id, title, icon, cards }) => <Column action={{ addCard, removeCard }} columnId={id} key={id} title={title} icon={icon} cards={cards} />)}
       </section>
       <ColumnForm action={addColumn} />
     </div>

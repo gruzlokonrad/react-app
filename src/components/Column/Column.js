@@ -4,6 +4,7 @@ import Card from '../Card/Card'
 import CardForm from '../CardForm/CardForm'
 
 const Column = ({ action, columnId, title, icon, cards }) => {
+  const { addCard, removeCard } = action;
   return (
     <article className={styles.column}>
       <h1 className={styles.title}>
@@ -11,9 +12,9 @@ const Column = ({ action, columnId, title, icon, cards }) => {
         {title}
       </h1>
       <ul className={styles.cards}>
-        {cards.map(card => <Card key={card.id} title={card.title} />)}
+        {cards?.map(card => <Card action={removeCard} key={card.id} title={card.title} columnId={columnId} cardId={card.id}/>)}
       </ul>
-      <CardForm columnId={columnId} action={action} />
+      <CardForm columnId={columnId} action={addCard} />
     </article>
   )
 }
