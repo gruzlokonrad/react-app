@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { ACTION } from '../../redux/actionType'
+import shortid from 'shortid'
 import Button from '../Button/Button'
 import TextInput from '../TextInput/TextInput'
 import styles from './CardForm.module.scss'
 
-const CardForm = (props) => {
-  const [value, setValue] = useState('');
+const CardForm = ({id}) => {
+  const [title, setTitle] = useState('');
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.action({title: value}, props.columnId);
-    setValue('');
+    if (title) {
+      dispatch({ type: ACTION.ADD_CARD, payload: { id: shortid(), columnId: id, title } })
+      setTitle('');
+    }
   }
 
   return (
     <form onSubmit={handleSubmit} className={styles.cardForm}>
-      <TextInput value={value} onChange={e => setValue(e.target.value)} placeholder='Card text' />
+      <TextInput title={title} onChange={e => setTitle(e.target.value)} placeholder='Card text' />
       <Button>Add Card</Button>
     </form>
   )

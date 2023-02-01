@@ -1,18 +1,26 @@
 import React, { useState } from 'react'
+import shortid from 'shortid'
+import { useDispatch } from 'react-redux'
+import { ACTION } from '../../redux/actionType'
 import styles from './ColumnForm.module.scss'
 import Button from '../Button/Button'
 import TextInput from '../TextInput/TextInput';
 
-const ColumnForm = (props) => {
+const ColumnForm = () => {
+  const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
   const [icon, setIcon] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
-    props.action({ title: title, icon: icon });
-    setIcon('');
-    setTitle('')
+    if (title && icon) {
+      dispatch({ type: ACTION.ADD_COLUMN, payload: { id: shortid(),title, icon } })
+      setIcon('');
+      setTitle('')
+    } else {
+      alert('Fill up all fields')
+    }
   };
 
   return (
