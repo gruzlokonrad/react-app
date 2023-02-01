@@ -1,71 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Column from '../Column/Column'
+import { useSelector } from 'react-redux';
 import styles from './List.module.scss'
-import shortid from 'shortid';
 import ColumnForm from '../ColumnForm/ColumnForm';
 
 const List = () => {
+  const columns = useSelector(state => state.columns);
 
-  const [columns, setColumns] = useState([
-    {
-      id: 1,
-      title: 'Books',
-      icon: 'book',
-      cards: [
-        { id: 1, title: 'This is Going to Hurt' },
-        { id: 2, title: 'Interpreter of Maladies' }
-      ]
-    },
-    {
-      id: 2,
-      title: 'Movies',
-      icon: 'film',
-      cards: [
-        { id: 1, title: 'Harry Potter' },
-        { id: 2, title: 'Star Wars' }
-      ]
-    },
-    {
-      id: 3,
-      title: 'Games',
-      icon: 'gamepad',
-      cards: [
-        { id: 1, title: 'The Witcher' },
-        { id: 2, title: 'Skyrim' }
-      ]
-    }
-  ]);
+  // const removeCard = (cardId, columnId) => {
+  //   const columnsUpdate = columns.map(column => {
+  //     if (column.id === columnId && column.cards.filter(card => card.id === cardId)) {
+  //       return { ...column, cards: column.cards.filter(card => card.id !== cardId) }
+  //     } else {
+  //       return column
+  //     }
+  //   })
 
-  const addColumn = ({ title, icon }) => {
-    setColumns([...columns, { id: shortid(), title: title, icon: icon, card: [] }]);
-  };
-
-  const addCard = (newCard, columnId) => {
-    const columnsUpdated = columns.map(column => {
-      if (column.id === columnId) {
-        if (column.cards) {
-          return { ...column, cards: [...column.cards, { id: shortid(), title: newCard.title }] }
-        }
-        return { ...column, cards: [{ id: shortid(), title: newCard.title }] }
-      }
-      else
-        return column
-    })
-
-    setColumns(columnsUpdated);
-  }
-
-  const removeCard = (cardId, columnId) => {
-    const columnsUpdate = columns.map(column => {
-      if (column.id === columnId && column.cards.filter(card => card.id === cardId)) {
-        return { ...column, cards: column.cards.filter(card => card.id !== cardId) }
-      } else {
-        return column
-      }
-    })
-
-    setColumns(columnsUpdate);
-  }
+  //   setColumns(columnsUpdate);
+  // }
 
   return (
     <div className={styles.list}>
@@ -76,9 +28,9 @@ const List = () => {
         Interesting things I want to check out.
       </p>
       <section className={styles.columns}>
-        {columns.map(({ id, title, icon, cards }) => <Column action={{ addCard, removeCard }} columnId={id} key={id} title={title} icon={icon} cards={cards} />)}
+        {columns.map(column => <Column key={column.id} {...column} />)}
       </section>
-      <ColumnForm action={addColumn} />
+      <ColumnForm />
     </div>
   )
 }

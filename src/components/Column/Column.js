@@ -1,10 +1,11 @@
 import React from 'react'
 import styles from './Column.module.scss'
+import { useSelector } from 'react-redux'
 import Card from '../Card/Card'
 import CardForm from '../CardForm/CardForm'
 
-const Column = ({ action, columnId, title, icon, cards }) => {
-  const { addCard, removeCard } = action;
+const Column = ({ id, title, icon }) => {
+  const cards = useSelector(state => state.cards.filter(card => card.columnId === id));
   return (
     <article className={styles.column}>
       <h1 className={styles.title}>
@@ -12,9 +13,9 @@ const Column = ({ action, columnId, title, icon, cards }) => {
         {title}
       </h1>
       <ul className={styles.cards}>
-        {cards?.map(card => <Card action={removeCard} key={card.id} title={card.title} columnId={columnId} cardId={card.id}/>)}
+        {cards?.map(card => <Card key={card.id} {...card} />)}
       </ul>
-      <CardForm columnId={columnId} action={addCard} />
+      <CardForm />
     </article>
   )
 }
