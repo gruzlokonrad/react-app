@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import shortid from 'shortid'
 import { useDispatch } from 'react-redux'
-import { ACTION } from '../../redux/actionType'
 import styles from './ColumnForm.module.scss'
-import Button from '../Button/Button'
-import TextInput from '../TextInput/TextInput';
+import Button from '../../Button/Button'
+import TextInput from '../../TextInput/TextInput';
+import { addColumn } from '../../../redux/selectors'
 
 const ColumnForm = () => {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const ColumnForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (title && icon) {
-      dispatch({ type: ACTION.ADD_COLUMN, payload: { id: shortid(),title, icon } })
+      dispatch(addColumn({ id: shortid(), title, icon }))
       setIcon('');
       setTitle('')
     } else {

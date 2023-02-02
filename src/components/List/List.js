@@ -2,15 +2,16 @@ import React from 'react';
 import Column from '../Column/Column'
 import { useSelector } from 'react-redux';
 import styles from './List.module.scss'
-import ColumnForm from '../ColumnForm/ColumnForm';
+import ColumnForm from '../Column/ColumnForm/ColumnForm';
+import { getAllColumns } from '../../redux/selectors';
 
 const List = () => {
-  const columns = useSelector(state => state.columns);
+  const columns = useSelector(getAllColumns);
 
   return (
     <div className={styles.list}>
       <header className={styles.header}>
-        Things to do <span>soon</span>
+        Things to do<span>soon</span>
       </header>
       <p className={styles.description}>
         Interesting things I want to check out.

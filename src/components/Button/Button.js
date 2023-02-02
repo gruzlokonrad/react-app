@@ -1,15 +1,12 @@
 import React from 'react'
 import styles from './Button.module.scss'
 
-const Button = ({ children, style, action, cardId, columnId }) => {
+const Button = ({ children, style, action }) => {
   return (
     <button
       className={styles.button}
       style={style}
-      onClick={() => {
-        if (action)
-          action(cardId, columnId)
-      }}
+      onClick={() => { action && action() }}
     >
       {children}
     </button >
