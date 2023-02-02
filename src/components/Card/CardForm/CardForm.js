@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { ACTION } from '../../../redux/actionType'
 import shortid from 'shortid'
 import Button from '../../Button/Button'
 import TextInput from '../../TextInput/TextInput'
@@ -21,7 +20,7 @@ const CardForm = ({ id }) => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.cardForm}>
-      <TextInput title={title} onChange={e => setTitle(e.target.value)} placeholder='Card text' />
+      <TextInput title={title} value={title} onChange={e => setTitle(e.target.value)} placeholder='Card text' />
       <Button>Add Card</Button>
     </form>
   )

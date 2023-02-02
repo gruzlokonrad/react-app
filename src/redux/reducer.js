@@ -11,6 +11,9 @@ const reducer = (state, action) => {
     case ACTION.SEARCH_STRING:
       return { ...state, search: action.payload.search }
 
+    case ACTION.REMOVE_CARD:
+      return { ...state, cards: [...state.cards.filter(card => action.payload !== card.id)]}
+
     default:
       // console.log('default')
       break;

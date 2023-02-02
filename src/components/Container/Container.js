@@ -1,9 +1,10 @@
 import React from 'react'
 import styles from './Container.module.scss'
+import clsx from 'clsx'
 
-const Container = ({ children }) => {
+const Container = ({ children, className }) => {
   return (
-    <div className={styles.container}>{children}</div>
+    <div className={clsx(className && className, styles.container)}>{children}</div>
   )
 }
 
