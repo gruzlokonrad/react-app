@@ -2,11 +2,11 @@ import React, { useState } from 'react'
 import shortid from 'shortid'
 import { useDispatch } from 'react-redux'
 import styles from './ColumnForm.module.scss'
-import Button from '../../Button/Button'
-import TextInput from '../../TextInput/TextInput';
-import { addColumn } from '../../../redux/selectors'
+import Button from '../Button/Button'
+import TextInput from '../TextInput/TextInput';
+import { addColumn } from '../../redux/selectors'
 
-const ColumnForm = () => {
+const ColumnForm = ({ listId }) => {
   const dispatch = useDispatch();
 
   const [title, setTitle] = useState('');
@@ -15,7 +15,7 @@ const ColumnForm = () => {
   const handleSubmit = e => {
     e.preventDefault();
     if (title && icon) {
-      dispatch(addColumn({ id: shortid(), title, icon }))
+      dispatch(addColumn({ id: shortid(), listId, title, icon }))
       setIcon('');
       setTitle('')
     } else {

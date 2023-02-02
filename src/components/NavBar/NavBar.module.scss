@@ -29,6 +29,10 @@
   }
 
   li a:hover {
-    border-bottom: 2px solid white;
+    border-bottom: 2px solid $color-warning;
+  }
+
+  .linkActive {
+    color: $color-warning;
   }
 }

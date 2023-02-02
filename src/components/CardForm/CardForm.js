@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import shortid from 'shortid'
-import Button from '../../Button/Button'
-import TextInput from '../../TextInput/TextInput'
+import Button from '../Button/Button'
+import TextInput from '../TextInput/TextInput'
 import styles from './CardForm.module.scss'
-import { addCard } from '../../../redux/selectors'
+import { addCard } from '../../redux/selectors'
 
 const CardForm = ({ id }) => {
   const [title, setTitle] = useState('');
