@@ -1,6 +1,7 @@
+import { Action } from '@remix-run/router';
 import { ACTION } from './actionType';
 
-const reducer = (state, {type, payload}) => {
+const reducer = (state, { type, payload }) => {
   switch (type) {
     case ACTION.ADD_COLUMN:
       return { ...state, columns: [...state.columns, payload] }
@@ -12,10 +13,13 @@ const reducer = (state, {type, payload}) => {
       return { ...state, search: payload.search }
 
     case ACTION.REMOVE_CARD:
-      return { ...state, cards: [...state.cards.filter(card => payload !== card.id)]}
-    
+      return { ...state, cards: [...state.cards.filter(card => payload !== card.id)] }
+
     case ACTION.ADD_LIST:
-      return { ...state, lists: [...state.lists, payload]}
+      return { ...state, lists: [...state.lists, payload] }
+
+    case ACTION.TOGGLE_CARD_FAVORITE:
+      return { ...state, cards: [...state.cards.map(card => (card.id === payload) ? { ...card, isFavorite: !card.isFavorite } : card)] }
 
     default:
       // console.log('default')

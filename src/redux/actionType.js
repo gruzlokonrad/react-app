@@ -4,4 +4,5 @@ export const ACTION  = {
   SEARCH_STRING: 'search_card',
   REMOVE_CARD: 'remove_card',
   ADD_LIST: 'add_list',
+  TOGGLE_CARD_FAVORITE: 'toggle_card_favorite',
 }
