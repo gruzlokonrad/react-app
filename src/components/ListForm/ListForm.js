@@ -3,7 +3,7 @@ import styles from './ListForm.module.scss'
 import TextInput from '../TextInput/TextInput'
 import Button from '../Button/Button'
 import { useDispatch } from 'react-redux'
-import { addList } from '../../redux/selectors'
+import { addList } from '../../redux/listRedux';
 import shortid from 'shortid'
 
 const ListForm = () => {

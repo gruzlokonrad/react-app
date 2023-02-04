@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 import styles from './ColumnForm.module.scss'
 import Button from '../Button/Button'
 import TextInput from '../TextInput/TextInput';
-import { addColumn } from '../../redux/selectors'
+import { addColumn } from '../../redux/columnRedux'
 
 const ColumnForm = ({ listId }) => {
   const dispatch = useDispatch();

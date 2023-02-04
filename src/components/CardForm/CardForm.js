@@ -4,7 +4,7 @@ import shortid from 'shortid'
 import Button from '../Button/Button'
 import TextInput from '../TextInput/TextInput'
 import styles from './CardForm.module.scss'
-import { addCard } from '../../redux/selectors'
+import { addCard } from '../../redux/cardRedux'
 
 const CardForm = ({ id }) => {
   const [title, setTitle] = useState('');
@@ -13,7 +13,7 @@ const CardForm = ({ id }) => {
   const handleSubmit = e => {
     e.preventDefault();
     if (title) {
-      dispatch(addCard({ id: shortid(), columnId: id, title }))
+      dispatch(addCard({ id: shortid(), columnId: id, isFavorite: false, title }))
       setTitle('');
     }
   }

@@ -3,7 +3,8 @@ import Column from '../Column/Column'
 import { useSelector } from 'react-redux';
 import styles from './List.module.scss'
 import ColumnForm from '../ColumnForm/ColumnForm';
-import { getColumnsById, getListById } from '../../redux/selectors';
+import { getColumnsById } from '../../redux/columnRedux';
+import { getListById } from '../../redux/listRedux';
 import { useParams } from 'react-router'
 // import { Navigate } from 'react-router'
 import NotFound from '../NotFound/NotFound';

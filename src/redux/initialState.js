@@ -36,7 +36,7 @@ const initialState = {
     { id: '7', columnId: '4', isFavorite: false, title: 'Kizo - Disney'},
   ],
 
-  search: "",
+  searchString: "",
 
   lists: [
     {

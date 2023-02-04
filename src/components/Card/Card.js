@@ -1,9 +1,9 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { removeCard } from '../../redux/selectors'
+import { removeCard } from '../../redux/cardRedux'
 import Button from '../Button/Button'
 import styles from './Card.module.scss'
-import { toggleCardFavorite } from '../../redux/selectors'
+import { toggleCardFavorite } from '../../redux/cardRedux'
 import clsx from 'clsx'
 
 const Card = ({ id, columnId, isFavorite, title }) => {
@@ -14,11 +14,13 @@ const Card = ({ id, columnId, isFavorite, title }) => {
   return (
     <div>
       <li className={styles.card}>
-        <Button action={toggleFavorite} type='favorite' className={clsx(isFavorite && 'favorite')}>
+        {title}
+        <Button action={toggleFavorite} type='icon' className={clsx(isFavorite && 'favorite')}>
           <span className="fa fa-star-o" />
         </Button>
-        {title}
-        <Button action={action} columnId={columnId} cardId={id} className={styles.button}>Remove</Button>
+        <Button action={action} type='icon' columnId={columnId} cardId={id} className={styles.button}>
+          <span className="fa fa-trash" />
+        </Button>
       </li>
     </div>
   )
