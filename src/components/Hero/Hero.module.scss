@@ -1,6 +1,11 @@
 @import '../../styles/settings.scss';
 
 .hero {
+  background-image: url('../../../public/images/space.png');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+  margin: 0 0 ($base-size * 3) 0;
   padding: $base-size;
 }
 

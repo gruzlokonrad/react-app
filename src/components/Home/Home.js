@@ -4,10 +4,10 @@ import Lists from '../Lists/Lists';
 
 const Home = () => {
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
       <Hero />
       <Lists />
-    </>
+    </div>
   )
 }
 

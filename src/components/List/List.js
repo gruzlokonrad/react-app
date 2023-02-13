@@ -17,7 +17,6 @@ const List = () => {
 
   if (!title || !description) {
     return <NotFound />
-    // return <Navigate to='/' />
   }
 
   return (
